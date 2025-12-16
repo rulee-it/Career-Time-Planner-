@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="blob" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.010" numOctaves="2" seed="2" result="noise">
+        <animate attributeName="baseFrequency" dur="10s" values="0.010;0.014;0.010" repeatCount="indefinite" />
+        <animate attributeName="seed" dur="12s" values="2;9;2" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="0.3" />
+    </filter>
+  </defs>
+
+  <g filter="url(#blob)">
+    <path fill="url(#g)" d="M532.1,98.8c61.5,38.7,114.9,93.2,129.2,160.7c14.3,67.5-10.5,148.1-63.2,212.3
+      c-52.7,64.2-133.2,112-214.8,99.2c-81.6-12.8-164.3-86.1-199.1-169.3C149.4,318.5,162.8,225.5,218.3,160
+      C273.9,94.5,371.6,56.1,450.9,61.8C530.2,67.5,535.6,60.1,532.1,98.8Z"/>
+  </g>
+</svg>

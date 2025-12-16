@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Time-management career planning page for students: roadmap, weekly planner, and progress dashboard." />
+  <title>Career Time Planner</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Poppins:wght@400..800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SVG sprite (inline for file:// compatibility) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 22V4"/>
+      <path d="M4 4h12l-1.5 4L16 12H4"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <path d="M16 2v4M8 2v4M3 10h18"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 6v6l4 2"/>
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3v18h18"/>
+      <path d="M7 14v4M12 10v8M17 6v12"/>
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2l1.2 4.3L17 8l-3.8 1.7L12 14l-1.2-4.3L7 8l3.8-1.7L12 2Z"/>
+      <path d="M19 12l.8 2.8L22 16l-2.2 1.2L19 20l-.8-2.8L16 16l2.2-1.2L19 12Z"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 18 6-6-6-6"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </symbol>
+  </svg>
+
+  <a class="skip" href="#planner">Skip to planner</a>
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Career Time Planner home">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">Career Time Planner</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="#how">How it works</a>
+        <a class="nav__link" href="#roadmap">Roadmap</a>
+        <a class="nav__link" href="#planner">Planner</a>
+        <a class="nav__link" href="#dashboard">Dashboard</a>
+        <a class="nav__link" href="#resources">Resources</a>
+        <a class="nav__link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="btn btn--primary" data-open-modal="create-plan">Create plan</button>
+      </div>
+
+      <button class="iconBtn header__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span class="iconBtn__lines" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="mobileNav" id="mobileNav" hidden>
+      <div class="mobileNav__card" role="dialog" aria-label="Menu">
+        <a class="mobileNav__link" href="#how">How it works</a>
+        <a class="mobileNav__link" href="#roadmap">Roadmap</a>
+        <a class="mobileNav__link" href="#planner">Planner</a>
+        <a class="mobileNav__link" href="#dashboard">Dashboard</a>
+        <a class="mobileNav__link" href="#resources">Resources</a>
+        <a class="mobileNav__link" href="#contact">Contact</a>
+        <button class="btn btn--primary mobileNav__cta" data-open-modal="create-plan">Create plan</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__blob" aria-hidden="true">
+          <svg class="blob" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+            <defs>
+              <linearGradient id="blobG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="var(--accent)" stop-opacity="0.80"/>
+                <stop offset="1" stop-color="var(--accent-2)" stop-opacity="0.22"/>
+              </linearGradient>
+              <filter id="blobF" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.010" numOctaves="2" seed="2" result="noise">
+                  <animate attributeName="baseFrequency" dur="10s" values="0.010;0.014;0.010" repeatCount="indefinite" />
+                  <animate attributeName="seed" dur="12s" values="2;9;2" repeatCount="indefinite" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+
+            <g filter="url(#blobF)">
+              <path fill="url(#blobG)" d="M532.1,98.8c61.5,38.7,114.9,93.2,129.2,160.7c14.3,67.5-10.5,148.1-63.2,212.3
+                c-52.7,64.2-133.2,112-214.8,99.2c-81.6-12.8-164.3-86.1-199.1-169.3C149.4,318.5,162.8,225.5,218.3,160
+                C273.9,94.5,371.6,56.1,450.9,61.8C530.2,67.5,535.6,60.1,532.1,98.8Z"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hero__grain" aria-hidden="true"></div>
+      </div>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="badge reveal" data-reveal="fade-up">
+            <svg class="badge__icon" width="18" height="18" aria-hidden="true"><use href="#i-spark"></use></svg>
+            <span>Time + career clarity</span>
+          </div>
+
+          <h1 class="hero__title reveal" data-reveal="fade-up" id="heroTitle">Plan your future — one week at a time.</h1>
+          <p class="hero__sub reveal" data-reveal="fade-up">Build a step-by-step career roadmap, schedule study hours, and track progress — built for students.</p>
+
+          <div class="hero__cta reveal" data-reveal="fade-up">
+            <button class="btn btn--primary" data-open-modal="create-plan">Create plan</button>
+            <a class="btn btn--ghost" href="#how">How it works</a>
+          </div>
+
+          <div class="hero__meta reveal" data-reveal="fade-up" aria-label="Highlights">
+            <div class="mini">
+              <svg width="18" height="18" aria-hidden="true"><use href="#i-flag"></use></svg>
+              <span>Milestones that stay realistic</span>
+            </div>
+            <div class="mini">
+              <svg width="18" height="18" aria-hidden="true"><use href="#i-calendar"></use></svg>
+              <span>Weekly planning in minutes</span>
+            </div>
+            <div class="mini">
+              <svg width="18" height="18" aria-hidden="true"><use href="#i-chart"></use></svg>
+              <span>Progress you can feel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="illus" id="heroParallax" data-parallax>
+            <div class="illus__layer illus__layer--back"></div>
+            <div class="illus__layer illus__layer--mid"></div>
+            <div class="illus__card illus__card--a">
+              <div class="illus__cardTitle">This week</div>
+              <div class="illus__row">
+                <span class="dot dot--success"></span>
+                <span class="text">3 study blocks</span>
+              </div>
+              <div class="illus__row">
+                <span class="dot"></span>
+                <span class="text">1 mock interview</span>
+              </div>
+              <div class="illus__bar" style="--p:68%"></div>
+            </div>
+            <div class="illus__card illus__card--b">
+              <div class="illus__cardTitle">Next milestone</div>
+              <div class="illus__row">
+                <span class="text">Build portfolio v1</span>
+              </div>
+              <div class="illus__pill">In progress</div>
+            </div>
+            <div class="illus__pin"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__sentinel" id="heroSentinel" aria-hidden="true"></div>
+    </section>
+
+    <section class="section" id="how" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="howTitle">How it works</h2>
+          <p class="lead reveal" data-reveal="fade-up">Quick setup, clear weekly actions, and visible momentum.</p>
+        </div>
+
+        <div class="grid3">
+          <article class="card stepCard reveal" data-reveal="flip" style="--i:0">
+            <div class="stepCard__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-flag"></use></svg></div>
+            <h3 class="h3">Step 1 — Set milestones</h3>
+            <p>Turn your goal into small, dated checkpoints with outcomes you can measure.</p>
+          </article>
+
+          <article class="card stepCard reveal" data-reveal="flip" style="--i:1">
+            <div class="stepCard__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-calendar"></use></svg></div>
+            <h3 class="h3">Step 2 — Schedule weekly time</h3>
+            <p>Drag tasks into a simple week view and lock in when you’ll actually do the work.</p>
+          </article>
+
+          <article class="card stepCard reveal" data-reveal="flip" style="--i:2">
+            <div class="stepCard__icon"><svg width="22" height="22" aria-hidden="true"><use href="#i-check"></use></svg></div>
+            <h3 class="h3">Step 3 — Track progress</h3>
+            <p>Check off tasks, watch your completion rise, and earn skill badges along the way.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="roadmap" aria-labelledby="roadmapTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="roadmapTitle">Interactive Career Roadmap</h2>
+          <p class="lead reveal" data-reveal="fade-up">Scroll/drag the timeline, open milestone details, and add tasks to your week.</p>
+        </div>
+
+        <div class="timelineShell card reveal" data-reveal="fade-up">
+          <div class="timelineShell__top">
+            <div class="timelineShell__hint" aria-live="polite">
+              <span class="kbd">Drag</span> to scroll. <span class="kbd">Ctrl</span> + <span class="kbd">Wheel</span> to zoom.
+            </div>
+            <div class="timelineShell__legend" aria-label="Milestone statuses">
+              <span class="tag tag--planned">Planned</span>
+              <span class="tag tag--progress">In progress</span>
+              <span class="tag tag--done">Done</span>
+            </div>
+          </div>
+
+          <div class="timeline" id="timeline" aria-label="Career milestones" role="list">
+            <div class="timeline__skeleton" id="timelineSkeleton" aria-hidden="true">
+              <div class="sk sk--line"></div>
+              <div class="sk sk--pin"></div>
+              <div class="sk sk--pin"></div>
+              <div class="sk sk--pin"></div>
+              <div class="sk sk--pin"></div>
+            </div>
+
+            <svg class="timeline__line" id="timelineLine" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="timelineGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="var(--accent)" />
+                  <stop offset="1" stop-color="var(--accent-2)" />
+                </linearGradient>
+              </defs>
+              <path id="timelineLineBase" d="M40 30 H1160" />
+              <path id="timelineLineProgress" d="M40 30 H1160" />
+            </svg>
+
+            <div class="timeline__items" id="timelineItems"></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel" id="milestonePanel" aria-label="Milestone details" aria-hidden="true">
+        <div class="panel__head">
+          <div>
+            <div class="panel__kicker" id="panelKicker">Milestone</div>
+            <h3 class="panel__title" id="panelTitle">—</h3>
+          </div>
+          <button class="iconBtn" type="button" data-close-panel aria-label="Close details">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-x"></use></svg>
+          </button>
+        </div>
+
+        <div class="panel__body" id="panelBody"></div>
+
+        <div class="panel__foot">
+          <button class="btn btn--primary" id="addToPlannerBtn">Add to weekly planner</button>
+          <button class="btn btn--ghost" data-open-modal="create-plan">Create another milestone</button>
+        </div>
+      </aside>
+      <div class="scrim" id="panelScrim" hidden></div>
+    </section>
+
+    <section class="section" id="planner" aria-labelledby="plannerTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="plannerTitle">Weekly Time Planner</h2>
+          <p class="lead reveal" data-reveal="fade-up">Drag-and-drop blocks to assign tasks. Smart suggested slots appear as you plan.</p>
+        </div>
+
+        <div class="plannerGrid">
+          <div class="plannerSide card reveal" data-reveal="fade-up">
+            <div class="plannerSide__head">
+              <h3 class="h3">Tasks</h3>
+              <p class="muted">Drag tasks here or choose recommended slots</p>
+            </div>
+            <div class="taskList" id="taskList" aria-label="Task list"></div>
+          </div>
+
+          <div class="plannerMain card reveal" data-reveal="fade-up">
+            <div class="plannerMain__head">
+              <div>
+                <h3 class="h3">This week</h3>
+                <p class="muted">Mon–Sun · snap to 30 minutes</p>
+              </div>
+              <button class="btn btn--ghost" id="clearWeekBtn" type="button">Clear week</button>
+            </div>
+
+            <div class="planner" id="plannerBoard" aria-label="Week planner">
+              <div class="planner__skeleton" id="plannerSkeleton" aria-hidden="true">
+                <div class="sk sk--grid"></div>
+              </div>
+              <div class="planner__header" id="plannerHeader"></div>
+              <div class="planner__body" id="plannerBody"></div>
+              <div class="planner__suggest" id="plannerSuggest" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="dashboard" aria-labelledby="dashTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="dashTitle">Progress Dashboard</h2>
+          <p class="lead reveal" data-reveal="fade-up">Completion, streaks, planned hours, and skill badges — all in one glance.</p>
+        </div>
+
+        <div class="dash">
+          <div class="dash__cards">
+            <div class="card stat reveal" data-reveal="fade-up" style="--i:0">
+              <div class="stat__label">Completion</div>
+              <div class="stat__row">
+                <div class="ring" data-ring="completion" aria-label="Completion ring">
+                  <svg viewBox="0 0 44 44" aria-hidden="true">
+                    <circle class="ring__track" cx="22" cy="22" r="18"></circle>
+                    <circle class="ring__value" cx="22" cy="22" r="18"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div class="stat__value"><span id="completionNum">0</span>%</div>
+                  <div class="muted">Across milestone tasks</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card stat reveal" data-reveal="fade-up" style="--i:1">
+              <div class="stat__label">Streak</div>
+              <div class="stat__value"><span id="streakNum">0</span> days</div>
+              <div class="muted">Mark any task done to keep it going</div>
+            </div>
+
+            <div class="card stat reveal" data-reveal="fade-up" style="--i:2">
+              <div class="stat__label">Hours planned</div>
+              <div class="stat__value"><span id="hoursNum">0</span>h</div>
+              <div class="muted">This week</div>
+            </div>
+
+            <div class="card stat reveal" data-reveal="fade-up" style="--i:3">
+              <div class="stat__label">Skill badges</div>
+              <div class="badges" id="badgeRow" aria-label="Badges"></div>
+              <div class="muted">Earned as you complete tasks</div>
+            </div>
+          </div>
+
+          <div class="card dash__note reveal" data-reveal="fade-up">
+            <h3 class="h3">Suggested next step</h3>
+            <p class="muted" id="nextStepCopy">Create a plan to see personalized suggestions.</p>
+            <div class="dash__actions">
+              <button class="btn btn--primary" data-open-modal="create-plan">Create plan</button>
+              <a class="btn btn--ghost" href="#resources">Browse resources</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources" aria-labelledby="resourcesTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="resourcesTitle">Suggested Actions & Resources</h2>
+          <p class="lead reveal" data-reveal="fade-up">Short, focused tasks with clear outcomes — expand to see details.</p>
+        </div>
+
+        <div class="resourceGrid" id="resourceGrid" aria-label="Resource cards"></div>
+      </div>
+    </section>
+
+    <section class="section section--tint" aria-labelledby="testimonialsTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="testimonialsTitle">What students say</h2>
+          <p class="lead reveal" data-reveal="fade-up">Small steps, consistent weeks — big results.</p>
+        </div>
+
+        <div class="carousel card reveal" data-reveal="fade-up" id="carousel" aria-label="Testimonials">
+          <div class="carousel__viewport" id="carouselViewport"></div>
+          <div class="carousel__controls">
+            <button class="btn btn--ghost" type="button" id="prevTestimonial">Prev</button>
+            <button class="btn btn--ghost" type="button" id="nextTestimonial">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faqTitle">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="h2 reveal" data-reveal="fade-up" id="faqTitle">FAQ</h2>
+          <p class="lead reveal" data-reveal="fade-up">Quick answers to help you get moving.</p>
+        </div>
+
+        <div class="faq" id="faq" aria-label="Frequently asked questions"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer__grid">
+      <div>
+        <div class="logo logo--footer">
+          <span class="logo__mark" aria-hidden="true"></span>
+          <span class="logo__text">Career Time Planner</span>
+        </div>
+        <p class="muted">Time-management for career planning — built for students.</p>
+      </div>
+
+      <div class="footer__links" aria-label="Footer links">
+        <a href="#how">How it works</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#planner">Planner</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#resources">Resources</a>
+      </div>
+
+      <form class="newsletter" id="newsletter" aria-label="Newsletter signup">
+        <label class="newsletter__label" for="newsEmail">Newsletter</label>
+        <div class="newsletter__row">
+          <input class="input" id="newsEmail" type="email" placeholder="Email address" autocomplete="email" required />
+          <button class="btn btn--primary" type="submit">Join</button>
+        </div>
+        <div class="newsletter__status" id="newsStatus" aria-live="polite"></div>
+      </form>
+
+      <div class="footer__copy muted">© <span id="year"></span> Career Time Planner</div>
+    </div>
+  </footer>
+
+  <!-- Create Plan Modal -->
+  <div class="modal" id="create-plan" role="dialog" aria-modal="true" aria-labelledby="createPlanTitle" aria-hidden="true">
+    <div class="modal__scrim" data-close-modal></div>
+    <div class="modal__card" role="document">
+      <div class="modal__head">
+        <h3 class="h3" id="createPlanTitle">Create goal</h3>
+        <button class="iconBtn" type="button" data-close-modal aria-label="Close modal">
+          <svg width="18" height="18" aria-hidden="true"><use href="#i-x"></use></svg>
+        </button>
+      </div>
+
+      <form class="form" id="goalForm" novalidate>
+        <div class="field">
+          <input class="field__input" id="goalTitle" name="goalTitle" required placeholder=" " maxlength="60" />
+          <label class="field__label" for="goalTitle">Goal title</label>
+          <div class="field__hint">E.g., “Internship-ready portfolio”</div>
+        </div>
+
+        <div class="field">
+          <input class="field__input" id="milestoneDate" name="milestoneDate" type="date" required placeholder=" " />
+          <label class="field__label" for="milestoneDate">Milestone date</label>
+        </div>
+
+        <div class="field">
+          <textarea class="field__input field__input--area" id="outcomes" name="outcomes" required placeholder=" " rows="3" maxlength="220"></textarea>
+          <label class="field__label" for="outcomes">Outcomes</label>
+          <div class="field__hint">1–2 lines: what “done” looks like.</div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <input class="field__input" id="weeklyTime" name="weeklyTime" type="number" min="1" max="40" required placeholder=" " />
+            <label class="field__label" for="weeklyTime">Est. weekly time (hours)</label>
+          </div>
+
+          <div class="field">
+            <select class="field__input" id="priority" name="priority" required>
+              <option value="" selected disabled>Pick</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <label class="field__label" for="priority">Priority</label>
+          </div>
+        </div>
+
+        <div class="form__actions">
+          <button class="btn btn--primary" type="submit">Save</button>
+          <button class="btn btn--ghost" type="button" data-close-modal>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true" hidden>
+    <div class="toast__icon" aria-hidden="true">
+      <svg class="toast__check" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </div>
+    <div class="toast__text" id="toastText">Saved — your plan’s updated</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
